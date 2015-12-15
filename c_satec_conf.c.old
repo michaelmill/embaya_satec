@@ -1,0 +1,126 @@
+/* -----------------------------------------------------------------;
+ * $source   : / $
+ * $revision : 1.0 $
+ * $author   : wyr@null.co.za $
+ * $date     : 2015/12/14 12:13:00 SAST $
+ * $desc     : $
+ * $log      : $
+ *
+ * -----------------------------------------------------------------;
+ */
+
+//------------------------------------------------------------------;
+//
+//------------------------------------------------------------------;
+
+char* m_satec_conf_find ( char                *l_key,
+                          struct c_satec_conf *l_c ) {
+
+   int i = 0;
+
+   for (i = 0; i <__len(l_c->l_items); i++) {
+
+      if (strcmp(l_c->l_items[i], l_key) == 0) {
+         return mid (l_c->l_list[i], strlen(l_key) + 1, strlen(l_c->l_list[i]));
+      }
+   }
+   return '\0';
+}
+
+//------------------------------------------------------------------;
+//
+//------------------------------------------------------------------;
+
+int m_satec_conf_read ( const char          *f, 
+                        struct c_satec_conf *l_c ) {
+
+   FILE *l_file   = fopen (f, "r");
+
+   char  buf[255];
+   char  s[255];
+   char *h;
+   int   c = 0;
+   int   r;
+
+   char *line = NULL;
+
+   if ( l_file == NULL ) {
+
+      //e_err->m_set ("[error : (m_read)] [statement : (l_file_not_found_error)]", e_err);
+      // TODO : print error return on exit?
+      exit (0);
+      return -1;
+   }
+   while (1) {
+
+      if (fgets (buf, 255, l_file) != NULL) {
+
+      //r = fscanf (l_file, "%s", (char*)&buf);
+
+         printf("%s", buf);
+
+      }else{
+         break;
+      }
+   }
+
+/**
+   while (fgets (buf, 255, l_file) != NULL) { //fgets (buf, 1000, l_file) != NULL) {
+
+      // get a line, up to 80 chars from fr.  done if NULL
+      sscanf (buf, "%s", 255);
+      // convert the string to a long int
+      printf ("%s\n", buf);
+   }
+**/
+/**
+      if (fgets (buf, 255, l_file) != NULL) {
+
+      //r = fscanf (l_file, "%s", (char*)&buf);
+
+         printf("%s", buf);
+
+      }else{
+         break;
+      }
+
+      if (r == EOF) {
+         break;
+      }
+ **/
+
+/**
+   while (1) {
+
+      int r = fscanf (l_file, "%s", (char*)&s);
+      if (r == EOF) break;
+
+      l_c->l_list[c] = (char*) malloc (sizeof(s));
+
+      printf ("%s\n", s);
+    
+
+      sprintf ( l_c->l_list[c], "%s", s );
+
+      c++;
+   }
+**/
+   fclose(l_file);
+
+   return 0;
+}
+
+//------------------------------------------------------------------;
+//
+//------------------------------------------------------------------;
+
+int m_satec_conf_configure ( struct c_satec_conf *l_c ) {
+
+   l_c->l_items [0] = "database_name";
+   l_c->l_items [1] = "database_statement";
+   l_c->l_items [5] = '\0';
+
+   m_satec_conf_read ("cfg/e.cfg", l_c);
+
+   return 1;
+}
