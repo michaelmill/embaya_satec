@@ -1,0 +1,3 @@
+sql_exec.c : Simple program to display SQLite usage, any T-SQL statements are arbitrary & user defined. 
+usage      : ./sqlite3 test.db
+             ./sql_exec DATABASE SQL-STATEMENT

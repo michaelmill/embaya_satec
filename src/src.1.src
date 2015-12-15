@@ -1,0 +1,40 @@
+/**
+int m_satec_conf_read ( const char          *f, 
+                        struct c_satec_conf *l_c ) {
+
+   FILE *l_file   = fopen (f, "r");
+
+   char  buf[255];
+   char  s[255];
+   char *h;
+   int   c = 0;
+   char* r;
+
+   if ( l_file == NULL ) {
+
+      //e_err->m_set ("[error : (m_read)] [statement : (l_file_not_found_error)]", e_err);
+      // TODO : print error return on exit?
+      exit (0);
+      return -1;
+   }
+ //while (fgets (buf, 255, l_file) != NULL) {
+   while (fgets(buf, sizeof(buf), l_file)) {
+
+      //r = fgets (buf, 255, l_file);
+
+      printf("%s", buf);
+
+      //if (r != NULL) {
+
+         //printf("%s", buf);
+
+      //}else{
+         //break;
+      //}
+   }
+
+   fclose(l_file);
+
+   return 0;
+}
+**/
