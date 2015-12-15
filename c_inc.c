@@ -14,7 +14,9 @@
 #include "c_satec_main.h"
 #include "c_satec_database.h"
 #include "c_satec_conf.h"
+#include "c_satec_log.h"
 
+#include "c_satec_log.c"
 #include "c_satec_conf.c"
 #include "c_satec_database.c"
 #include "c_satec_main.c"
